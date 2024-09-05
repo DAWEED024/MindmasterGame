@@ -55,6 +55,30 @@
             align-items: center;
         }
 
+        .difficulty-buttons {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .difficulty-buttons button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: background-color 0.2s;
+        }
+
+        .difficulty-buttons button:hover {
+            background-color: #2980b9;
+        }
+
         .color-options {
             display: flex;
             margin: 20px 0;
@@ -101,7 +125,7 @@
         }
 
         .color-button[data-color="pink"] {
-            background-color: #ff69b4; /* Nowy kolor – różowy */
+            background-color: #ff69b4;
         }
 
         .selected-colors {
@@ -247,12 +271,32 @@
                 transform: translate(-50%, -50%) scale(1.1);
             }
         }
+
+        @media (max-width: 600px) {
+            .color-button, .selected-colors div {
+                width: 40px;
+                height: 40px;
+            }
+
+            .attempt div {
+                width: 30px;
+                height: 30px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="produced-by">Produced by Frytka Company</div>
     <button class="toggle-switch" id="toggle-switch">Day/Night Mode</button>
     <button class="new-game-btn" id="new-game-btn">New Game</button>
+
+    <div class="difficulty-buttons">
+        <button id="easy-btn">Easy</button>
+        <button id="medium-btn">Medium</button>
+        <button id="hard-btn">Hard</button>
+        <button id="hardcore-btn">Hardcore</button>
+    </div>
+
     <div class="container">
         <div class="game-area">
             <h1>Mindmaster Game</h1>
@@ -268,12 +312,7 @@
                 <button class="color-button" data-color="pink"></button>
             </div>
 
-            <div class="selected-colors" id="selected-colors">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
+            <div class="selected-colors" id="selected-colors"></div>
 
             <button id="submit-guess">Submit Guess</button>
 
@@ -284,13 +323,11 @@
 
         <div class="previous-attempts" id="previous-attempts"></div>
 
-        <!-- Kafelek po prawej stronie pokazujący pozostałe próby -->
         <div class="attempts-tile">
             <h2>Remaining Attempts</h2>
             <span id="attempts">7</span>
         </div>
 
-        <!-- Komunikat końcowy -->
         <div class="end-message" id="end-message"></div>
     </div>
 
